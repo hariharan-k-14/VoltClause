@@ -1,7 +1,6 @@
 ## VoltClause
 
 
-
 ## Problem
 CEA safety and technical standards regulations are amended often, and site teams still carry old printouts. A wrong clearance or earthing value can fail an inspection or cause an accident.
 
