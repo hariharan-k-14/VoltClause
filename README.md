@@ -1,18 +1,18 @@
-# <Your product name>
+VoltClause
 
 > Fill this top section from your Examate project card on Day 1. Replace every line in angle brackets.
 
 ## Problem
-<3–5 sentences: who struggles with what today, and what your product changes.>
+CEA safety and technical standards regulations are amended often, and site teams still carry old printouts. A wrong clearance or earthing value can fail an inspection or cause an accident.
 
 ## Who it is for
-<One or two real user types, for example "compliance officer at a gold-loan NBFC in Coimbatore".>
+Electrical design engineer at an EPC firm building rooftop solar and substations in Tiruppur
 
 ## Signature feature
-<One sentence: the feature only your product has.>
+Clause diff card: pick any regulation number and see old text, new text and the amendment that changed it.
 
 ## Hardest problem (my interview story)
-<In your own words, from your project card.>
+Versioning: latest valid version. Many CEA rules exist in a 2010 version, a 2023 version and later amendments. The system tracks which version is in force for a given date and shows a clause-by-clause 'what changed' diff, so an engineer never quotes a repealed value.
 
 ## Dataset
 | Source | Link | Documents | Pages | Licence / terms |
