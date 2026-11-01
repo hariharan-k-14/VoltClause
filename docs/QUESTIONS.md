@@ -1,16 +1,16 @@
 # 10 real questions my user will ask
 
-Write them the way your user would type them. At least 3 must need more than one page to answer, and at least 1 must be a question your documents cannot answer.
+These questions reflect the day-to-day regulatory queries of an electrical design engineer at an EPC firm building rooftop solar and 33/11 kV substations in Tiruppur.
 
 | # | Question | Where the answer is (document, page) | Needs more than one page? |
 |---|---|---|---|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | (cannot be answered from my documents) | none | |
+| 1 | What is the minimum vertical clearance for a 33 kV line over a road? | Central Electricity Authority (Measures relating to Safety and Electric Supply) Regulations, 2023, Regulation 58, Table 1 & Schedule VII (Sag Temperature Multipliers), pp. 48–50 | Yes |
+| 2 | What changed in the safety regulations between the 2010 and 2023 versions on earthing? | CEA Safety Regulations 2010 (Reg 41, 48) vs CEA Safety Regulations 2023 (Reg 41, 42, 44 & 48 on maintenance-free chemical earthing and neutral grounding), pp. 36–42 | Yes |
+| 3 | Which regulation covers grid connectivity for rooftop solar inverters? | CEA (Technical Standards for Connectivity to the Grid) (Amendment) Regulations, 2019, Part II & Regulation B2 (Harmonics, Anti-islanding, and FRT), pp. 8–12 | Yes |
+| 4 | What is the minimum horizontal clearance required between a 33 kV overhead conductor and adjacent factory building walls in Tiruppur industrial clusters? | CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, Regulation 61 (Clearance from buildings of lines exceeding 650 V), p. 52 | No |
+| 5 | What are the mandatory testing intervals and maximum earth resistance limits for 33/11 kV substation earth electrodes? | CEA (Measures relating to Safety and Electric Supply) Regulations, 2023, Regulation 48 (Testing of earth resistance), p. 41 | No |
+| 6 | What are the mandatory fire protection wall and oil soak pit requirements for indoor substation power transformers? | CEA Technical Standards for Construction of Electrical Plants and Electric Lines, Chapter 4 (Substation Safety and Fire Fighting Requirements), pp. 78–82 | Yes |
+| 7 | What is the maximum allowable anti-islanding trip time for a 500 kW grid-connected commercial rooftop solar plant under CEA rules? | CEA (Technical Standards for Connectivity to the Grid) (Amendment) Regulations, 2019, Schedule Part II, p. 9 | No |
+| 8 | What accuracy class is required for consumer net-metering bidirectional energy meters connected at 11 kV or 415 V? | Central Electricity Authority (Installation and Operation of Meters) Regulations, 2006 (as amended 2014 & 2019), Regulation 4 & Schedule, pp. 6–10 | Yes |
+| 9 | What is the minimum phase-to-phase and phase-to-earth electrical air clearance inside a 33 kV outdoor switchyard? | CEA Technical Standards for Construction of Electrical Plants and Electric Lines Regulations, Section 4 (Switchyard Clearances), p. 86 | No |
+| 10 | What is the per-unit feed-in tariff and commercial net metering settlement rate paid by TANGEDCO for a rooftop solar facility in Tiruppur? | (cannot be answered from my documents) — Tariffs and commercial net-metering settlement rates are governed under the Electricity Act 2003 by the state regulator (Tamil Nadu Electricity Regulatory Commission / TNERC) and TANGEDCO commercial tariff orders, whereas CEA exclusively regulates national technical and safety standards. | none |
