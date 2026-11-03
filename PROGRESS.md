@@ -28,5 +28,7 @@ Commit after every class. Tag every Friday: `git tag week-N && git push origin w
 ## Daily log
 | Date | What I did today | Commit |
 |---|---|---|
-| 2026-10-23 | Completed Week 1: set up repository, extracted 50+ pages of CEA regulations, defined 10 real user questions in QUESTIONS.md, /health endpoint running. | `fcef147` |
-| 2026-10-30 | Completed Week 2: built POST /chat with structured JSON & SSE streaming, primary + fallback LLM routing with retry and exponential backoff, cost log ledger + GET /usage endpoint, Docker Compose with pgvector, comprehensive DESIGN.md with schemas & diagrams, 16 unit tests passing with green CI. | `week-2` |
+
+| 03 Nov 2026 | Streaming /chat, safe retries, fallback model, cost log, GET /usage | 5564ace |
+| 03 Nov 2026 | Docker Compose (API + pgvector), /ready route, .dockerignore | pending |
+
