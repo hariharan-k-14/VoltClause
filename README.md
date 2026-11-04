@@ -1,3 +1,4 @@
+
 # VoltClause
 
 [![CI](https://github.com/hariharan-k-14/VoltClause/actions/workflows/ci.yml/badge.svg)](https://github.com/hariharan-k-14/VoltClause/actions/workflows/ci.yml)
@@ -130,3 +131,6 @@ Run the full test suite (16 tests, 100% offline-compatible):
 pytest -q
 ruff check .
 ```
+
+
+**Live:**  https://voltclause.onrender.com/health · first request after 15 idle minutes takes about a minute (free tier)
