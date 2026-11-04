@@ -16,24 +16,24 @@ VoltClause provides electrical engineers with the currently valid Central Electr
 ```mermaid
 graph TD
     Client["Client / Web UI / Site Engineer"] -->|HTTP / SSE| API["FastAPI Application (app.main)"]
-    
+
     subgraph "Application Core"
         API --> Health["GET /health (Liveness)"]
         API --> Chat["POST /chat (Structured Query)"]
         API --> Stream["POST /chat/stream (SSE Streaming)"]
         API --> Usage["GET /usage (Tokens & Cost Ledger)"]
-        
+
         Chat --> Router["LLM Router & Fallback Handler"]
         Stream --> Router
-        
+
         Router -->|Primary Model| OpenAIClient["Primary LLM (e.g. gpt-4o-mini)"]
         Router -->|Timeout / Error / No Key| FallbackEngine["Fallback Model (mock-cea-expert)"]
-        
+
         Router --> UsageTracker["UsageTracker (app.services.usage)"]
         UsageTracker --> UsageFile["Usage Log (logs/llm_usage.jsonl)"]
         UsageTracker --> UsageDB["llm_usage_logs Table"]
     end
-    
+
     subgraph "Data & Vector Layer (PostgreSQL 16 + pgvector)"
         DB[(PostgreSQL + pgvector)]
         API -.->|Future Week 3/4| DB
@@ -177,7 +177,7 @@ erDiagram
     CLAUSES ||--o{ CLAUSE_DIFFS : compared_in
     REGULATIONS ||--o{ DOCUMENT_CHUNKS : chunked_into
     PROJECT_AUDITS ||--o{ AUDIT_ITEMS : details
-    
+
     REGULATIONS {
         uuid id PK
         varchar title
@@ -189,7 +189,7 @@ erDiagram
         date repealed_date
         varchar source_url
     }
-    
+
     CLAUSES {
         uuid id PK
         uuid regulation_id FK
@@ -201,7 +201,7 @@ erDiagram
         date effective_to
         uuid supersedes_clause_id
     }
-    
+
     CLAUSE_DIFFS {
         uuid id PK
         varchar regulation_no
@@ -213,7 +213,7 @@ erDiagram
         text old_text
         text new_text
     }
-    
+
     DOCUMENT_CHUNKS {
         uuid id PK
         uuid regulation_id FK
@@ -223,7 +223,7 @@ erDiagram
         text chunk_text
         vector_1536 embedding
     }
-    
+
     LLM_USAGE_LOGS {
         uuid id PK
         varchar request_id
@@ -341,7 +341,7 @@ sequenceDiagram
 
     Engineer->>API: POST /chat (33 kV clearance question)
     API->>Router: generate_response(request)
-    
+
     alt API Key Provided & not forced fallback
         Router->>Primary: Attempt 1 (timeout=15s)
         alt Network Error / 5xx / Rate Limit 429
@@ -356,7 +356,7 @@ sequenceDiagram
     else No Key Configured (CI / Local Offline)
         Router->>Fallback: Call Built-in CEA Engine
     end
-    
+
     Fallback-->>Router: In-Force Clause Answer + Citations
     Router->>Ledger: record_usage(tokens, cost_usd, fallback=True)
     Ledger-->>Router: usage logged
