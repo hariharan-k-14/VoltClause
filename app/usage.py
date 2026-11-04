@@ -1,4 +1,5 @@
 """Added for Session 5: totals per day (UTC) from logs/cost.jsonl, for GET /usage."""
+
 import json
 from datetime import UTC, datetime
 from pathlib import Path

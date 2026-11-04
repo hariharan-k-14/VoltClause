@@ -33,9 +33,7 @@ MODEL_PRICING: dict[str, dict[str, float]] = {
 def calculate_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
     """Calculate the estimated USD cost for a given token usage and model."""
     pricing = MODEL_PRICING.get(model, MODEL_PRICING["gpt-4o-mini"])
-    cost = (
-        prompt_tokens * pricing["prompt"] + completion_tokens * pricing["completion"]
-    ) / 1_000_000.0
+    cost = (prompt_tokens * pricing["prompt"] + completion_tokens * pricing["completion"]) / 1_000_000.0
     return round(cost, 6)
 
 
@@ -54,9 +52,7 @@ class CEAExpertEngine:
         q = query.lower()
 
         # 1) Vertical Clearance / 33 kV over road
-        if "vertical clearance" in q or (
-            "clearance" in q and ("33" in q or "road" in q or "line" in q)
-        ):
+        if "vertical clearance" in q or ("clearance" in q and ("33" in q or "road" in q or "line" in q)):
             reply = (
                 "Under the Central Electricity Authority (Measures relating to Safety and "
                 "Electric Supply) Regulations, 2023, Regulation 58 (Clearance above ground "
@@ -146,8 +142,7 @@ class CEAExpertEngine:
             citations = [
                 Citation(
                     document=(
-                        "CEA (Technical Standards for Connectivity to the Grid) (Amendment) "
-                        "Regulations, 2019"
+                        "CEA (Technical Standards for Connectivity to the Grid) (Amendment) Regulations, 2019"
                     ),
                     regulation_no="Regulation B2 & Part II",
                     clause="Technical requirements for generating stations using renewable energy sources",

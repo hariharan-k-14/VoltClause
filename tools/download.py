@@ -50,11 +50,7 @@ class PDFLinkParser(HTMLParser):
         if tag.lower() == "a" and self._current_href is not None:
             label = " ".join(self._current_text).lower()
             path = urlparse(self._current_href).path.lower()
-            if (
-                path.lower().endswith(".pdf")
-                or "pdf" in label
-                or "/download/" in path
-            ):
+            if path.lower().endswith(".pdf") or "pdf" in label or "/download/" in path:
                 self.links.append(self._current_href)
             if "/regulations-category/" in path:
                 self.category_links.append(self._current_href)
@@ -65,11 +61,7 @@ class PDFLinkParser(HTMLParser):
 def read_urls(list_file):
     """Read non-empty, non-comment URLs from a text file."""
     with Path(list_file).open(encoding="utf-8") as file:
-        return [
-            line.strip()
-            for line in file
-            if line.strip() and not line.lstrip().startswith("#")
-        ]
+        return [line.strip() for line in file if line.strip() and not line.lstrip().startswith("#")]
 
 
 def is_allowed_by_robots(url, robots_cache):
@@ -98,9 +90,7 @@ def document_extension(response):
         return ".pdf"
 
     disposition = email.message.Message()
-    disposition["content-disposition"] = response.headers.get(
-        "Content-Disposition", ""
-    )
+    disposition["content-disposition"] = response.headers.get("Content-Disposition", "")
     filename = disposition.get_filename() or urlparse(response.url).path.rsplit("/", 1)[-1]
     extension = Path(unquote(filename)).suffix.lower()
     if extension == ".docx" and content.startswith(b"PK\x03\x04"):
@@ -112,10 +102,7 @@ def document_extension(response):
 
 def is_document_response(response):
     content_type = response.headers.get("Content-Type", "").lower()
-    return (
-        document_extension(response) is not None
-        or "application/pdf" in content_type
-    )
+    return document_extension(response) is not None or "application/pdf" in content_type
 
 
 def document_links_from_page(response):
@@ -132,9 +119,7 @@ def document_links_from_page(response):
 
 def filename_for(response):
     disposition = email.message.Message()
-    disposition["content-disposition"] = response.headers.get(
-        "Content-Disposition", ""
-    )
+    disposition["content-disposition"] = response.headers.get("Content-Disposition", "")
     filename = disposition.get_filename()
     if not filename:
         filename = urlparse(response.url).path.rsplit("/", 1)[-1]
@@ -142,10 +127,7 @@ def filename_for(response):
     filename = re.sub(r'[<>:"/\\|?*]', "_", filename).strip(" .")
     extension = document_extension(response) or ".pdf"
     if not filename or Path(filename).suffix.lower() not in {".pdf", ".docx", ".doc"}:
-        filename = (
-            f"document-{hashlib.sha256(response.url.encode()).hexdigest()[:12]}"
-            f"{extension}"
-        )
+        filename = f"document-{hashlib.sha256(response.url.encode()).hexdigest()[:12]}{extension}"
     return filename
 
 
@@ -198,9 +180,7 @@ def download_pdfs(list_file=URL_LIST_FILE):
     if manifest_exists:
         with MANIFEST_FILE.open(newline="", encoding="utf-8") as existing_manifest:
             downloaded_urls.update(
-                row["source_url"]
-                for row in csv.DictReader(existing_manifest)
-                if row.get("source_url")
+                row["source_url"] for row in csv.DictReader(existing_manifest) if row.get("source_url")
             )
     robots_cache = {}
     page_queue = list(urls)
@@ -209,9 +189,7 @@ def download_pdfs(list_file=URL_LIST_FILE):
     with MANIFEST_FILE.open("a", newline="", encoding="utf-8") as manifest_file:
         manifest_writer = csv.writer(manifest_file)
         if not manifest_exists:
-            manifest_writer.writerow(
-                ["file", "source_url", "downloaded_on", "bytes", "sha256"]
-            )
+            manifest_writer.writerow(["file", "source_url", "downloaded_on", "bytes", "sha256"])
 
         while page_queue:
             source_url = page_queue.pop(0)
@@ -242,8 +220,7 @@ def download_pdfs(list_file=URL_LIST_FILE):
                 dict.fromkeys(
                     urljoin(source_response.url, href)
                     for href in parser.links
-                    if urlparse(urljoin(source_response.url, href)).scheme
-                    in {"http", "https"}
+                    if urlparse(urljoin(source_response.url, href)).scheme in {"http", "https"}
                 )
             )
             if not document_urls:
@@ -257,9 +234,9 @@ def download_pdfs(list_file=URL_LIST_FILE):
                 category_url = urljoin(source_response.url, category_href)
                 parsed_category = urlparse(category_url)
                 if (
-                    (parsed_category.scheme, parsed_category.netloc) == source_origin
-                    and category_url not in visited_pages
-                ):
+                    parsed_category.scheme,
+                    parsed_category.netloc,
+                ) == source_origin and category_url not in visited_pages:
                     page_queue.append(category_url)
 
             for document_url in document_urls:

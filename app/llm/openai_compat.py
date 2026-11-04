@@ -26,10 +26,7 @@ class OpenAICompatProvider(LLMProvider):
     async def stream_async(self, request: LLMRequest) -> AsyncIterator[TextChunk]:
         payload = {
             "model": request.model or self.model,
-            "messages": [
-                {"role": message.role, "content": message.content}
-                for message in request.messages
-            ],
+            "messages": [{"role": message.role, "content": message.content} for message in request.messages],
             "stream": True,
             "stream_options": {"include_usage": True},
         }

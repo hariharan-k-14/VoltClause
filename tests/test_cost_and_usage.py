@@ -37,8 +37,8 @@ def test_log_call_records_jsonl(tmp_path):
 def test_usage_totals_per_day(client, tmp_path):
     log = [
         {"ts": 1792800000.0, "input_tokens": 1200, "output_tokens": 300, "cost_usd": 0.00105},  # 2026-10-24
-        {"ts": 1792810000.0, "input_tokens": 800, "output_tokens": 200, "cost_usd": 0.0007},    # 2026-10-24
-        {"ts": 1792900000.0, "input_tokens": 100, "output_tokens": 50, "cost_usd": 0.000125},   # 2026-10-25
+        {"ts": 1792810000.0, "input_tokens": 800, "output_tokens": 200, "cost_usd": 0.0007},  # 2026-10-24
+        {"ts": 1792900000.0, "input_tokens": 100, "output_tokens": 50, "cost_usd": 0.000125},  # 2026-10-25
     ]
     path = client.settings.cost_log_path
     with open(path, "w", encoding="utf-8") as f:

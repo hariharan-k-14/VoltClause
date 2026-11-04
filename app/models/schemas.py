@@ -10,9 +10,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str = Field(..., description="User question or electrical specification query")
-    messages: list[ChatMessage] | None = Field(
-        default=None, description="Optional full conversation history"
-    )
+    messages: list[ChatMessage] | None = Field(default=None, description="Optional full conversation history")
     project_type: str | None = Field(
         default=None, description="Project domain: rooftop_solar, substation, transmission_line"
     )
@@ -47,9 +45,7 @@ class ChatResponse(BaseModel):
     reply: str = Field(..., description="Technical answer quoting valid CEA clauses")
     model_used: str = Field(..., description="The model that produced the answer")
     provider: str = Field(..., description="LLM provider: openai, gemini, or mock")
-    fallback_triggered: bool = Field(
-        ..., description="True if primary model failed and fallback was used"
-    )
+    fallback_triggered: bool = Field(..., description="True if primary model failed and fallback was used")
     attempt_count: int = Field(..., description="Number of attempts before success")
     usage: TokenUsage = Field(..., description="Token usage and dollar cost for this call")
     citations: list[Citation] = Field(

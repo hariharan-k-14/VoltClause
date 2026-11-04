@@ -1,4 +1,5 @@
 """Cost logging: one JSON line per LLM call."""
+
 import json
 import time
 from pathlib import Path

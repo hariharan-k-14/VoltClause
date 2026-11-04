@@ -1,4 +1,3 @@
-
 class LLMUnavailable(Exception):
     """The provider remained unavailable after its retry policy was exhausted."""
 

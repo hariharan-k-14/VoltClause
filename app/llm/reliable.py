@@ -92,16 +92,12 @@ class AsyncReliableLLM:
 
     async def stream(self, request: LLMRequest) -> AsyncIterator[TextChunk]:
         try:
-            async for chunk in self._stream_provider(
-                self.primary, request, self.primary_retries
-            ):
+            async for chunk in self._stream_provider(self.primary, request, self.primary_retries):
                 yield chunk
         except LLMUnavailable as error:
             if error.partial_output or self.fallback is None:
                 raise
-            async for chunk in self._stream_provider(
-                self.fallback, request, self.fallback_retries
-            ):
+            async for chunk in self._stream_provider(self.fallback, request, self.fallback_retries):
                 yield chunk
 
     async def _stream_provider(

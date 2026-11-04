@@ -83,9 +83,7 @@ class UsageTracker:
         self._total_tokens += entry.total_tokens
         self._total_cost_usd = round(self._total_cost_usd + entry.cost_usd, 6)
 
-        model_summary = self._breakdown_by_model.setdefault(
-            entry.model, ModelUsageSummary()
-        )
+        model_summary = self._breakdown_by_model.setdefault(entry.model, ModelUsageSummary())
         model_summary.requests += 1
         model_summary.prompt_tokens += entry.prompt_tokens
         model_summary.completion_tokens += entry.completion_tokens
@@ -113,8 +111,7 @@ class UsageTracker:
                 total_tokens=self._total_tokens,
                 total_cost_usd=round(self._total_cost_usd, 6),
                 breakdown_by_model={
-                    k: ModelUsageSummary(**v.model_dump())
-                    for k, v in self._breakdown_by_model.items()
+                    k: ModelUsageSummary(**v.model_dump()) for k, v in self._breakdown_by_model.items()
                 },
                 recent_logs=list(self._recent_logs[:limit]),
             )
