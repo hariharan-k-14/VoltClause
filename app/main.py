@@ -2,9 +2,10 @@ import json
 import time
 from collections.abc import AsyncIterator
 from typing import Annotated
+
 import psycopg
 from fastapi import Depends, FastAPI
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 
 from app.config import Settings, get_settings
 from app.cost import log_call
